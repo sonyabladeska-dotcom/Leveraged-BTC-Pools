@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0b0e14;
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0b0e14; }
+::-webkit-scrollbar-thumb { background: #2a3548; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3a4a60; }
+
+/* ── Custom utilities ── */
+@layer components {
+    .glass-card {
+        @apply bg-lev-card border border-lev-border rounded-2xl;
+        backdrop-filter: blur(12px);
+    }
+
+    .glass-surface {
+        @apply bg-lev-surface border border-lev-border rounded-xl;
+    }
+
+    .btn-primary {
+        @apply px-6 py-3 bg-gradient-to-r from-lev-orange to-amber-500 text-black font-bold rounded-xl
+               hover:from-amber-500 hover:to-lev-orange transition-all duration-300
+               active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed;
+    }
+
+    .btn-secondary {
+        @apply px-6 py-3 bg-lev-surface border border-lev-border text-white font-semibold rounded-xl
+               hover:bg-lev-card hover:border-lev-orange/30 transition-all duration-300
+               active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed;
+    }
+
+    .btn-danger {
+        @apply px-6 py-3 bg-red-600/20 border border-red-500/30 text-red-400 font-semibold rounded-xl
+               hover:bg-red-600/30 hover:border-red-500/50 transition-all duration-300
+               active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed;
+    }
+
+    .stat-card {
+        @apply glass-card p-6 flex flex-col gap-2;
+    }
+
+    .input-field {
+        @apply w-full px-4 py-3 bg-lev-bg border border-lev-border rounded-xl text-white
+               placeholder-gray-500 focus:outline-none focus:border-lev-orange/50
+               transition-colors duration-200;
+    }
+
+    .tab-active {
+        @apply text-lev-orange border-b-2 border-lev-orange pb-2;
+    }
+
+    .tab-inactive {
+        @apply text-gray-400 hover:text-gray-200 pb-2 border-b-2 border-transparent;
+    }
+
+    .pool-multiplier {
+        @apply inline-flex items-center px-3 py-1 rounded-lg text-sm font-bold;
+    }
+
+    .pool-x1 {
+        @apply pool-multiplier bg-lev-green/10 text-lev-green border border-lev-green/20;
+    }
+
+    .pool-x2 {
+        @apply pool-multiplier bg-lev-orange/10 text-lev-orange border border-lev-orange/20;
+    }
+
+    .pool-x3 {
+        @apply pool-multiplier bg-red-500/10 text-red-400 border border-red-500/20;
+    }
+
+    .glow-orange {
+        box-shadow: 0 0 40px rgba(247, 147, 26, 0.15), 0 0 80px rgba(247, 147, 26, 0.05);
+    }
+
+    .glow-green {
+        box-shadow: 0 0 30px rgba(20, 241, 149, 0.1);
+    }
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(247, 147, 26, 0.1); }
+    50% { box-shadow: 0 0 40px rgba(247, 147, 26, 0.25); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.animate-fade-in { animation: fadeIn 0.5s ease-out; }
+.animate-slide-up { animation: slideUp 0.6s ease-out; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+/* ── Gradient text ── */
+.gradient-text {
+    background: linear-gradient(135deg, #f7931a, #fbbf24, #14f195);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-orange {
+    background: linear-gradient(135deg, #f7931a, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Background pattern ── */
+.bg-grid {
+    background-image:
+        linear-gradient(rgba(247, 147, 26, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(247, 147, 26, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+/* ── Recharts overrides ── */
+.recharts-cartesian-grid line { stroke: #1e293b; }
+.recharts-text { fill: #94a3b8 !important; font-size: 12px; }
+.recharts-tooltip-wrapper { outline: none; }
+
+/* ── Number input ── */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] { -moz-appearance: textfield; }

@@ -1,0 +1,13 @@
+{
+  "name": "leveraged-btc-pools",
+  "version": "1.0.0",
+  "description": "Leveraged BTC Pools — DeFi protocol on Bitcoin L1 using OP_NET",
+  "scripts": {
+    "build:contract": "cd contracts && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "deploy:testnet": "npx ts-node scripts/deploy.ts"
+  },
+  "license": "MIT"
+}
